@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Maapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.sample.dao.SampleMapper">
+  
+  <resultMap type="sample" id="result">
+  
+  
+  <id property ="rNo" column="rno"/>
+  <result property="name" column="name"/>
+   <result property="age" column="age"/>
+    <result property="percentage" column="percentage"/>
+  
+  </resultMap>
+  <select id="getEmployeeDetail" resultType="sample" resultMap="result"> 
+  
+  
+  SELECT * FROM sample;
+  
+  
+  </select>
+  
+  <insert id="insetValues" parameterType="sample" keyProperty="rNo" useGeneratedKeys="true">
+  
+  
+  insert into sample(name,age,percentage)values(#{name},#{age},#{percentage})
+  </insert>
+  
+  <delete id="deleteSample" parameterType="int">
+  Delete from sample where rno = #{rNo} ;
+  
+  </delete>
+  <select id="getSample" parameterType="int" resultType="sample" resultMap="result">
+  
+   select * from sample where rno = #{rNo}
+  
+  </select>
+  <update id="updateSample" parameterType="sample">
+  
+  update sample set name=#{name},age=#{age},percentage = #{percentage} where rno = #{rNo};
+  
+  </update>
+  
+  
+ 
+  </mapper>
